@@ -1,4 +1,4 @@
-package com.example;
+package com.example.unit1;
 
 /**
  * Created by Гунга on 08.06.2017.

@@ -1,6 +1,4 @@
-package com.example;
-
-import java.util.function.Function;
+package com.example.unit1;
 
 /**
  * Created by Гунга on 07.06.2017.
