@@ -6,6 +6,7 @@ import com.example.unit1.Unit1Exercise;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import static com.example.unit1.Unit1Exercise.people;
@@ -17,21 +18,21 @@ public class StandardFunctionalInterfaceExample {
     public static void main(String[] args) {
 
         // Step 1: Sort list by last name
-        Collections.sort(Unit1Exercise.people, Comparator.comparing(Person::getLastName));
+        Collections.sort(people, Comparator.comparing(Person::getLastName));
 
         // Step 2: Create a method that prints all elements in the list
-        printConditionally(Unit1Exercise.people, person -> true);
+        printConditionally(people, p -> true, p -> System.out.println(p));
 
         // Step 3: Create a method that prints all people that have last name beginning with C
-        printConditionally(Unit1Exercise.people, p -> p.getLastName().startsWith("C"));
-        printConditionally(Unit1Exercise.people, p -> p.getFirstName().startsWith("C"));
+        printConditionally(people, p -> p.getLastName().startsWith("C"), p -> System.out.println(p));
+        printConditionally(people, p -> p.getFirstName().startsWith("C"), p -> System.out.println(p.getFirstName()));
     }
 
-    public static void printConditionally(List<Person> people, Predicate<Person> predicate) {
+    public static void printConditionally(List<Person> people, Predicate<Person> predicate, Consumer<Person> consumer) {
         System.out.println("Printing all people with condition");
         for (Person p : people) {
             if (predicate.test(p))
-                System.out.println(p);
+                consumer.accept(p);
         }
         System.out.println();
     }
